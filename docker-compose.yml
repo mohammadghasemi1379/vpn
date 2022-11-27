@@ -1,0 +1,28 @@
+version: '3.2'
+
+services:
+    shadowsocks:
+        container_name: shadowsocks
+        image: shadowsocks/shadowsocks-libev
+        expose:
+            - 8388/udp
+            - 8388/tcp
+        environment:
+            - PASSWORD=123456
+            - METHOD=chacha20-ietf-poly1305
+            - TIMEOUT=1800
+        restart: always
+
+    simple-obfs:
+        container_name: obfs
+        image: gists/simple-obfs
+        ports:
+            - 443:8388
+        environment:
+            - FORWARD=shadowsocks:8388
+            - DNS_SERVER=8.8.8.8
+            - FAILOVER=google.com
+            - OBFS_OPTS=http
+        depends_on:
+            - shadowsocks
+        restart: always
