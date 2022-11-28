@@ -1,5 +1,3 @@
-# vpn
-
 ## Features
 
 - <a href="https://github.com/shadowsocks/shadowsocks-libev"> shadowsocks </a>
