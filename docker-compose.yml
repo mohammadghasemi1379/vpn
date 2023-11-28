@@ -17,11 +17,11 @@ services:
         container_name: obfs
         image: gists/simple-obfs
         ports:
-            - 443:8388
+            - 8080:8388
         environment:
             - FORWARD=shadowsocks:8388
             - DNS_SERVER=8.8.8.8
-            - FAILOVER=google.com
+            - FAILOVER=snappfood.ir
             - OBFS_OPTS=http
         depends_on:
             - shadowsocks
